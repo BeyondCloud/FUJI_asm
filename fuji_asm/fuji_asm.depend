@@ -1,6 +1,8 @@
 # depslib dependency file v1.0
-1494495768 source:c:\users\a1989\desktop\fuji_asm\main.cpp
+1494597474 source:c:\users\a1989\desktop\fuji_asm\main.cpp
 	<iostream>
 	<fstream>
-	<string>
+	<string.h>
+	<stdio.h>
+	<map>
 
