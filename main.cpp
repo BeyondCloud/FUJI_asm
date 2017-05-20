@@ -5,7 +5,13 @@
 #include <stdio.h>
 #include <map>
 #include  <iomanip>
+#include  "ins.h"
+#include  <assert.h>
+
 using namespace std;
+typedef void (*op_fp)(string &str1,string &str2);
+ifstream infile("in_file.s");
+ofstream outfile ("example.txt");
 
 /*
 string get_opcode(char* code)
@@ -22,43 +28,45 @@ string get_opcode(char* code)
     return code;
 }
 */
-map<string, string> op_tbl;
-map<string, string>::iterator iter;
+map<string, op_fp> op_tbl;
+map<string, op_fp>::iterator iter;
 //eax 000 , ebx 011 ,ecx 001 ,edx  010
 void tbl_init()
 {
-    op_tbl["add"] = "000111";//01C3  add %eax, %ebx
-    op_tbl["sub"] = "001010";
-    op_tbl["mul"] = "1111011111100"; // F7E0  mul %eax
-    op_tbl["div"] = "1111011111110";
+    op_tbl["add"] = add;//01C3  add %eax, %ebx
 
-    op_tbl["mov"]= "10111"; //B9030000 mov $3,%ecx
-    op_tbl["cmp"]= "0011100111";//39C3 cmp %eax , %ebx
+    /*
+    op_tbl["sub"] = sub;
+    op_tbl["mul"] = mul; // F7E0  mul %eax
+    op_tbl["div"] = div;
+
+    //immediate address
+    op_tbl["mov"]= mov; //B8+r (r: register)
+    op_tbl["cmp"]= cmp;//39C3 cmp %eax , %ebx
 
 
-    op_tbl["jmp"]= "";//
+    op_tbl["jmp"]= ;//
     //note: jxx will change opcode if jump too far
-    op_tbl["ja"]= "011101110";//
-    op_tbl["jae"]="011100110";//
-    op_tbl["jb"]= "011100100";//jb jc same op code?
-    op_tbl["jbe"]="011101100";//
-    op_tbl["jc"]= "011100100";//
-    op_tbl["jcxz"]= "";//
+    op_tbl["ja"]= ja;//
+    op_tbl["jae"]=jae;//
+    op_tbl["jb"]= jb;//jb jc same op code?
+    op_tbl["jbe"]=jbe;//
+    op_tbl["jc"]= jc;//
+    op_tbl["jcxz"]= jcxz;//
 
-    op_tbl["je"]= "0111";//
-    op_tbl["jg"]= "0111";//
-    op_tbl["jge"]="0111";//
-    op_tbl["jl"]= "0111";//
-    op_tbl["jle"]="0111";//
+    op_tbl["je"]= je;//
+    op_tbl["jg"]= jg;//
+    op_tbl["jge"]=jge;//
+    op_tbl["jl"]= jl;//
+    op_tbl["jle"]=jle;//
 
-
-
-    op_tbl["call"]= "";//
-    op_tbl["rt"]= "";//
-
+    op_tbl["call"]=call;//
+    op_tbl["ret"]= ret;//
+*/
 
 }
-string get_tbl_code(map<string, string> M ,string str)
+/*
+void get_tbl_code(map<string,op_fp> M ,string str)
 {
     iter = M.find(str);
     if(iter != M.end())
@@ -66,39 +74,37 @@ string get_tbl_code(map<string, string> M ,string str)
     else
        return str;
 }
-
-
+*/
 int main () {
     tbl_init();
-    char * pch;
-    ifstream infile("test.s");
-    ofstream outfile ("example.txt");
-    if (!infile.is_open())
-    {
-      cout << "Unable to open file";
-      return 0;
-    }
+    assert(infile.is_open());
     string line;
     static int line_counter = 0;
+    char *pch;
     while( getline (infile,line) )
     {
       char str[64];
-      strcpy(str, line.c_str());
+      strcpy(str,line.c_str());
       pch = strtok (str," \t,");
-
+      int arg_cnt = 0;
+      string mnem[3];
       while (pch != NULL)
       {
-        outfile<< setfill('0') << setw(4)<<hex<<line_counter<<"\t";
-        outfile<<get_tbl_code(op_tbl,pch)<<"\n";
-        pch = strtok (NULL, " \t,$");
-        line_counter+=2;
-      }
 
+        //outfile<< setfill('0') << setw(4)<<hex<<line_counter<<"\t";
+        //outfile<<get_tbl_code(op_tbl,pch)<<"\n";
+        //line_counter+=2;
+        mnem[arg_cnt] = pch;
+        pch = strtok (NULL, " \t,$");
+        arg_cnt++;
+      }
+      op_tbl[mnem[0]](mnem[1],mnem[2]);
+      cout<<endl;
 
     }
 
 
-    cout<<"Done,output file to example.txt";
+    //cout<<"Done,output file to example.txt";
     infile.close();
 
 

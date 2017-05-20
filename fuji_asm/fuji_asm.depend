@@ -1,8 +1,17 @@
 # depslib dependency file v1.0
-1494597474 source:c:\users\a1989\desktop\fuji_asm\main.cpp
+1495269909 source:c:\users\a1989\desktop\fuji_asm\main.cpp
 	<iostream>
 	<fstream>
 	<string.h>
 	<stdio.h>
 	<map>
+	<iomanip>
+	"ins.h"
+
+1495269977 c:\users\a1989\desktop\fuji_asm\inc\ins.h
+	<string>
+
+1495269985 source:c:\users\a1989\desktop\fuji_asm\src\ins.cpp
+	"ins.h"
+	<iostream>
 
