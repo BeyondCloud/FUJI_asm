@@ -1,13 +1,9 @@
-  mov $1,%eax
-  mov $2,%ebx
   mov $3,%ecx
   mov $4,%edx
   mov %eax,%edx
 
   movl $5, ebx 
-  add %eax, %ebx
   add $5, %eax
-  add %ebx, %ecx
   add %ecx, %edx
   sub %eax, %ebx
   sub %ebx, %ecx
