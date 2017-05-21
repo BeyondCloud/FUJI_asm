@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="../inc" />
 				</Compiler>
@@ -33,9 +34,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="../inc/ins.h" />
-		<Unit filename="../inc/optbl.h" />
+		<Unit filename="../inc/map_tbl.h" />
 		<Unit filename="../main.cpp" />
 		<Unit filename="../src/ins.cpp" />
+		<Unit filename="../src/map_tbl.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

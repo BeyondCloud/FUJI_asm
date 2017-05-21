@@ -70,21 +70,14 @@ void add(char* chp1,char* chp2)
         opstr += "11"; //MOD
         opstr += "000"; //op extension ,000 for add imm
         opstr += reg32_tbl[str_no_prefix[1]];
-        if(stoi( str_no_prefix[0])<65535)
-        {
-            int tmp;
-
+        if(stoi( str_no_prefix[0])<256)
             opstr+=bitset<8>(stoi(str_no_prefix[0])).to_string();
-            //opstr+= s;
-        }
-
+        else if(stoi( str_no_prefix[0])<65536)
+            opstr+=bitset<16>(stoi(str_no_prefix[0])).to_string();
+        else
+            opstr+=bitset<32>(stoi(str_no_prefix[0])).to_string();
     }
 
     cout<<str_bin2hex(opstr)<<"\t"<<opstr<<endl;
-
-
-  //  cout<<pch<<"\t";
-  //  pch = strtok (str2,"$%");
-  //  cout<<pch;
 }
 
