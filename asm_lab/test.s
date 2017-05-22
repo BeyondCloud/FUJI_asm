@@ -1,3 +1,4 @@
+
   mov $3,%ecx
   mov $4,%edx
   mov %eax,%edx
@@ -5,6 +6,8 @@
   movl $5, ebx 
   add $5, %eax
   add %ecx, %edx
+  add %ebp, 24(%eax)
+  addl	%edx, %eax
   sub %eax, %ebx
   sub %ebx, %ecx
   sub %ecx, %edx

@@ -1,0 +1,15 @@
+   1              	.data
+   2 0000 01000000 	NBRS:	.int	1		# NBRS
+   3              	
+   4              	.text
+   5              	.globl _start			# Make start symbol visible
+   6              	_start:
+   7 0000 B8050000 		movl	$5, %eax
+   7      00
+   8              	
+   9 0005 03050000 		addl	NBRS,%eax	# (NBRS) + 5
+   9      0000
+  10 000b FF350000 		pushl	NBRS		# push the first dword on the stack (arg to exit)
+  10      0000
+  11 0011 E8000000 		call	exit
+  11      009090

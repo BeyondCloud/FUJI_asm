@@ -40,6 +40,7 @@ string str_bin2hex(string bin)
     return hexVal;
 
 }
+//support imm2reg , mem2reg
 void add(char* chp1,char* chp2)
 {
     char* pch[2];
