@@ -31,7 +31,10 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add directory="../inc" />
+			<Add directory="../src" />
 		</Compiler>
 		<Unit filename="../inc/ins.h" />
 		<Unit filename="../inc/map_tbl.h" />
