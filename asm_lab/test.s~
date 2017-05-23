@@ -5,8 +5,6 @@
 
   movl $5, ebx 
   add $214748324, %eax
-  add $5, %eax
-
   add %ecx, %edx
   add %ebp, 24(%eax)
   addl	%edx, %eax
