@@ -9,6 +9,8 @@
 
   add %ecx, %edx
   add %ebp, 24(%eax)
+  add %ebp, 1024(%eax)
+
   addl	%edx, %eax
   sub %eax, %ebx
   sub %ebx, %ecx
