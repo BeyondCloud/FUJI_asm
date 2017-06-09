@@ -1,4 +1,4 @@
-.data
+
 NBRS:	.byte	1		# NBRS
 
 .text
